@@ -1,0 +1,26 @@
+{
+  "name": "mmm-calendarext3timeline",
+  "version": "1.0.0",
+  "description": "Successor of CX2Timeline, Magicmirror module",
+  "main": "MMM-CalendarExt3Timeline.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MMRIZE/MMM-CalendarExt3Timeline.git"
+  },
+  "keywords": [
+    "timeline",
+    "CX3",
+    "MagicMirror",
+    "module",
+    "MMM"
+  ],
+  "author": "eouia0819@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MMRIZE/MMM-CalendarExt3Timeline/issues"
+  },
+  "homepage": "https://github.com/MMRIZE/MMM-CalendarExt3Timeline#readme"
+}
