@@ -12,7 +12,7 @@
   left: 0;
   bottom: 0;
   width: var(--nowIndex);
-  border-right: 2px dotted red;
+  border-right: 2px solid gold;
   content: ' ';
   /* background-image: linear-gradient(to right, transparent calc(100% - 10px), red); */
 }
@@ -37,7 +37,7 @@
   background-color: var(--calendarColor);
   color: var(--oppositeColor);
   text-align:left;
-  font-size: 16px;
+  font-size: 14px;
   height: 20px;
   overflow: hidden;
   white-space: nowrap;
@@ -108,6 +108,31 @@
   font-weight: bold;
 }
 
+
+.CX3T .legends {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+  padding: 10px;
+
+}
+
+.CX3T .legends .legend {
+  font-size: 75%;
+  background-color: var(--calendarColor);
+  color: var(--oppositeColor);
+  padding: 2px 5px;
+  border-radius: 5px;
+  display: block;
+}
+
+.CX3T .legend.useSymbol .symbol {
+  display: inline-block;
+  padding-right: 2px;
+  font-size: 90%;
+  align-self: center;
+}
 
 
 
