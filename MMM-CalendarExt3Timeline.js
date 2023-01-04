@@ -18,6 +18,7 @@ Module.register('MMM-CalendarExt3Timeline', {
     calendarSet: [],
     eventFilter: null,
     eventTransformer: null,
+    preProcessor: null,
     useSymbol: true,
     notification: 'CALENDAR_EVENTS', /* reserved */
     maxSlots: 5,
@@ -137,7 +138,8 @@ Module.register('MMM-CalendarExt3Timeline', {
 
     let events = this.library.prepareEvents({
       storedEvents: this.storedEvents,
-      range: [sv, ev]
+      range: [sv, ev],
+      config: config
     })
   
     dom.dataset.events = events.length

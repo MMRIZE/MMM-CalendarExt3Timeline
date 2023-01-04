@@ -100,6 +100,7 @@ All the properties are omittable, and if omitted, a default value will be applie
 |`animationSpeed` | 1000 | (ms) Refreshing the view smoothly. |
 |`useSymbol` | true | Whether to show font-awesome symbold instead of simple dot icon. |
 |`displayLegend` | false | If you set as true, legend will be displayed. (Only the clanear which has name assigned)|
+|`preProcessor` | callback function | See the `pre-processing` part |
 
 ## Notification
 ### Incoming Notifications
@@ -175,6 +176,22 @@ eventTransformer: (ev) => {
 ```
 This example shows how you can transform the color of events when the event title has specific text.
 
+
+### Preprocessing
+```js
+preProcessor: (ev) => {
+  if (ev.title.includes('test')) return null
+  if (ev.calendarName === 'Specific calendar') ev.startDate += 2 * 60 * 60 * 1000
+  return ev
+}
+```
+This example shows 1) if the title of event has `test`, drop the event off 2) then add 2 hours to the start time of events on specific calendar.
+
+Unlike `eventTransformer`, the `preProcessor` would be applied to raw data format of events from the default `calendar` module or equivalent. This is the better place to adjust event itself to make it compatible with this module.
+
+
+
+
 ## Mode
 This module could have one of 2 modes, `staticMode: true` and `staticMode: false`.
 ### `staticMode: true`
@@ -213,7 +230,7 @@ symbol: ['brands google-drive', 'solid calendar'],
 
 ### Compatible with `randomBrainstormer/MMM-GoogleCalendar`
 ```js
-eventTransformer: (e) => {
+preProcessor: (e) => {
   e.startDate = new Date(e.start?.date || e.start?.dateTime).valueOf()
   e.endDate = new Date(e.end?.date || e.end?.dateTime).valueOf()
   e.title = e.summary
@@ -221,12 +238,18 @@ eventTransformer: (e) => {
   return e
 }
 ```
+>> This tip doesn't consider different timezone. You might need to adjsut `startDate` and `endDate` additionally to convert event into your timezone.
+
 
 ## Not the bug, but...
 - The default `calendar` module cannot emit the exact starting time of `multidays-fullday-event which is passing current moment`. Always it starts from today despite of original event starting time. So this module displays these kinds of multidays-fullday-event weirdly.
 
 
 ## History
+### 1.1.0 (2023-01-04)
+- **ADDED** : `preProcessor` to adjust event data when it arrives as notification. It helps to escape side-effect on `eventFilter`, `eventTransformer` early applying. 
+- **FIXED** : Timing of `eventFilter/Transformer` was delayed to draw time to prevent side-effects.
+>> These features are importnat so would be applied `CX3` and `CX3A` also, but not yet.
 ### 1.0.0 (2022-11-11)
 - Released.
 

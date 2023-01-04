@@ -38,17 +38,10 @@ const regularizeEvents = ({storedEvents, eventPool, sender, payload, config}) =>
     return [...result, ...cur]
   }, [])
 
-  if (typeof config.eventFilter === 'function') {
-    storedEvents = storedEvents.filter(config.eventFilter)
+  if (typeof config.preProcessor === 'function') {
+    storedEvents = storedEvents.map(config.preProcessor)
   }
 
-  if (typeof config.eventTransformer === 'function') {
-    storedEvents = storedEvents.map(config.eventTransformer)
-  }
-
-  if (typeof config.eventSorter === 'function') {
-    storedEvents = storedEvents.sort(config.eventSorter)
-  }
   return storedEvents
 }
 
@@ -132,7 +125,7 @@ const oppositeMagic = (e, original) => {
   e.style.setProperty('--oppositeColor', original.oppositeColor)
 }
 
-const prepareEvents = ({storedEvents, range}) => {
+const prepareEvents = ({storedEvents, range, config}) => {
   const thisMoment = new Date()
   const isCurrent = (ev) => {
     let tm = Date.now()
@@ -168,6 +161,18 @@ const prepareEvents = ({storedEvents, range}) => {
     ev.isMultiday = isMultiday(ev)
     return ev
   })
+
+  if (typeof config.eventFilter === 'function') {
+    events = events.filter(config.eventFilter)
+  }
+
+  if (typeof config.eventTransformer === 'function') {
+    events = events.map(config.eventTransformer)
+  }
+
+  if (typeof config.eventSorter === 'function') {
+    events = events.sort(config.eventSorter)
+  }
 
   return events
 }
