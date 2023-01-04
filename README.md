@@ -1,5 +1,5 @@
 # MMM-CalendarExt3Timeline
-Successor of CX2Timeline, Magicmirror module. A sibling module of MMM-CalendarExt3. This module would show timeline of events.
+A successor of CalendarExtTimeline, a Magicmirror module. A sibling module of MMM-CalendarExt3. This module would show the timeline of events.
 
 
 ## Screenshot
